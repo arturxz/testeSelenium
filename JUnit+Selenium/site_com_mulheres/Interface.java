@@ -43,12 +43,7 @@ public class Interface {
 	public void testeTituloPaginaPrincipal() {
 		assertEquals("COM² Mulheres", driver.getTitle());
 	}
-	
-	@Test
-	public void testeUrlPaginaPrincipal() {
-		assertEquals(site, driver.getCurrentUrl());
-	}
-	
+
 	// TESTES DOS BOTÕES DA BARRA DE NAVEGACAO
 	@Test
 	public void testeBotaoEventosNav() {
