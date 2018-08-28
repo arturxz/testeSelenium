@@ -19,16 +19,16 @@ public class Interface {
 	@BeforeClass
 	public static void executaAntes() {
 		// Setting System path
-		//System.setProperty("webdriver.gecko.driver","C:\\Users\\artur\\eclipse\\geckodriver.exe");
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\artur\\eclipse\\chromedriver.exe");
+		System.setProperty("webdriver.gecko.driver","C:\\Users\\artur\\eclipse\\geckodriver.exe");
+		//System.setProperty("webdriver.chrome.driver","C:\\Users\\artur\\eclipse\\chromedriver.exe");
 		
 		// Setting some abilities to the gecko driver
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		capabilities.setCapability("marionette", true);
 		
 		// Create a new instance of the Firefox driver
-		//driver = new FirefoxDriver();
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
+		//driver = new ChromeDriver();
         //Launch the Online Store Website
 		driver.get(site);
  

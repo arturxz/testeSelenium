@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -20,16 +21,16 @@ public class Interface {
 	@Before
 	public void executaAntes() {
 		// Setting System path
-		//System.setProperty("webdriver.gecko.driver","C:\\Users\\artur\\eclipse\\geckodriver.exe");
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\artur\\eclipse\\chromedriver.exe");
+		System.setProperty("webdriver.gecko.driver","C:\\Users\\pc\\Downloads\\geckodriver.exe");
+		//System.setProperty("webdriver.chrome.driver","C:\\Users\\artur\\eclipse\\chromedriver.exe");
 		
 		// Setting some abilities to the gecko driver
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		capabilities.setCapability("marionette", true);
 		
 		// Create a new instance of the Firefox driver
-		//driver = new FirefoxDriver();
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
+		//driver = new ChromeDriver();
         //Launch the Online Store Website
 		driver.get(site);
  
@@ -77,6 +78,36 @@ public class Interface {
 		driver.findElement( By.id("button-component").xpath(".//a[@href='/contato']") ).click();
 		assertEquals(site+"contato", driver.getCurrentUrl());
 	}
+	
+	//TESTE DE REFRESH
+	@Test
+	public void testeRefreshContato() {
+		driver.findElement(By.xpath(".//a[@href='/contato']")).click();
+		driver.navigate().refresh();
+		assertEquals(site+"contato", driver.getCurrentUrl());
+	}
+
+	//TESTE DE INPUT
+	@Test
+	public void testeInputContato() {
+		driver.findElement(By.xpath(".//a[@href='/contato']")).click();
+		WebElement inputNome = driver.findElement(By.id("name"));
+		inputNome.sendKeys("Jusley");
+		
+		WebElement inputEmail = driver.findElement(By.id("email"));
+		inputEmail.sendKeys("jusleyarley@gmail.com");
+		
+		WebElement inputAssunto = driver.findElement(By.id("subject"));
+		inputAssunto.sendKeys("Testando");
+		
+		WebElement inputMensagem = driver.findElement(By.id("message"));
+		inputMensagem.sendKeys("Testando");
+		
+		driver.findElement(By.id("button-component")).submit();
+		
+		assertEquals("Efetue a verificação do robô.", driver.findElement( By.xpath(".//p[@class='answer']") ).getText() );
+	}
+
 	
 }
 
