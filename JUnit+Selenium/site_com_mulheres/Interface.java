@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -19,15 +20,16 @@ public class Interface {
 	@Before
 	public void executaAntes() {
 		// Setting System path
-		System.setProperty("webdriver.gecko.driver","C:\\Users\\artur\\eclipse\\geckodriver.exe");
+		//System.setProperty("webdriver.gecko.driver","C:\\Users\\artur\\eclipse\\geckodriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\artur\\eclipse\\chromedriver.exe");
 		
 		// Setting some abilities to the gecko driver
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		capabilities.setCapability("marionette", true);
 		
 		// Create a new instance of the Firefox driver
-		driver = new FirefoxDriver();
-		
+		//driver = new FirefoxDriver();
+		driver = new ChromeDriver();
         //Launch the Online Store Website
 		driver.get(site);
  
